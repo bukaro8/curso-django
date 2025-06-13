@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Manager
 
 # Create your models here.
 
@@ -6,6 +7,7 @@ from django.db import models
 class Project(models.Model):
     """Model to add project with name and id"""
     name = models.CharField(max_length=200)
+    objects: Manager = models.Manager()
 
 
 class Task(models.Model):
@@ -13,3 +15,4 @@ class Task(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    objects: Manager = models.Manager()
