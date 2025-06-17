@@ -1,23 +1,25 @@
 """Views for the myapp application."""
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404
 from .models import Project, Task
 
 
 def index(request):
     """Render the index page."""
-    return HttpResponse("Index page")
-
-
-def hello(request, username):
-    """Greet a user by their username."""
-    return HttpResponse(f"Hello {username}")
+    return render(request, "index.html", {})
 
 
 def about(request):
     """Render the about page."""
-    return HttpResponse("about")
+    return render(request, "about.html", {})
+
+
+def hello(request, username):
+    """Greet a user by their username."""
+    context = {
+        'username': username
+    }
+    return render(request, "hello.html", context)
 
 
 def projects(request):
